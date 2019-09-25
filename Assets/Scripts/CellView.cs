@@ -1,43 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CellView : MonoBehaviour
 {
-    public CellModel Cell;
+    public CellModel Cell
+    {
+        get { return _cell;}
+        set
+        {
+            _cell = value;
+            _image.color = value.Color;
+        }
+    }
+
+    private CellModel _cell;
+
     [SerializeField] private Image _image;
 
-    private void Start()
+    private void Awake()
     {
         _image = GetComponent<Image>();
     }
 
     public void OnClick()
     {
-        if (Cell.IsOpened) return;
-        Open();
-        GameController.Instance.CheckBoard();
-        if (GameController.Instance.OnGameOver)
-        {
-            GameObject.Find("board").GetComponent<BoardView>().GameOver();
-        }
-        if (GameController.Instance.CurrentTurnCharaId == 0)
-        {
-            _image.color = Color.red;
-        }
-        else
-        {
-            _image.color = Color.blue;
-        }
-        GameController.Instance.ChangeTurn();
-    }
-
-    public void Open()
-    {
-        Cell.CharaId = GameController.Instance.CurrentTurnCharaId;
-        Cell.IsOpened = true;
+        if (Cell.IsOpened) return; //すでにそのセル画空いてたらスキップする
+        GameController.Instance.Open(Cell.X,Cell.Y); //ViweからControllerに投げる
+        _image.color = Cell.Color;
     }
 }

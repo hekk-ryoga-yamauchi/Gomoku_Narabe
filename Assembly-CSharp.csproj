@@ -71,7 +71,10 @@
     <Compile Include="Assets\Scripts\CellView.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameModel.cs" />
+    <Compile Include="Assets\Scripts\GameView.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\ResetButtonView.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/hekk339/projects/practice/Gomoku_Narabe/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

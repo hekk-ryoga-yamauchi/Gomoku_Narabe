@@ -1,14 +1,19 @@
-using System.Collections;
-using UnityEngine;
-
-namespace DefaultNamespace
-{
-    public class Player
+public class Player : IPlayer//interfaceに切ったほうがいい
     {
-        public static int Id = 0;
-        public void StartTurn()
+        public int Id = 0; //なくてもいい getter
+        public void StartTurn() 
         {
             
         }
+
+        public void ClickCell()
+        {
+        }
     }
-}
+
+    public interface IPlayer
+    {
+        void StartTurn();
+
+        void ClickCell();
+    }

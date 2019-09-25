@@ -1,14 +1,12 @@
-using System.Collections;
-using UnityEngine;
-
-namespace DefaultNamespace
-{
-    public class Enemy
+public class Enemy : IPlayer
     {
-        public static int Id = 1;
+        public int Id = 1;
         public void StartTurn()
         {
             
         }
+
+        public void ClickCell()
+        {
+        }
     }
-}
