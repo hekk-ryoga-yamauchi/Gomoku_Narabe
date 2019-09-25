@@ -5,7 +5,7 @@ public class GameModel //全modelを持つクラス
 {
     public const int CellSize = 17;
     public const int LineUpCount = 5;
-    public int CurrentTurnCharaId;
+    public ICharactor CurrentCharacter;
 
     public static GameModel Instance { get; } = new GameModel(); //シングルトン
     public static Player Player { get; } = new Player(); //シングルトン
@@ -34,7 +34,7 @@ public class GameModel //全modelを持つクラス
 
     public void Open(int x, int y)
     {
-        Cells[x,y].CharaId = CurrentTurnCharaId;
+        Cells[x, y].Character = CurrentCharacter;
         Cells[x,y].IsOpened = true;
         
         if (CheckGameOver())
@@ -86,7 +86,7 @@ public class GameModel //全modelを持つクラス
         }
         if (Cells[x + dx,y + dy].IsOpened)
         {
-            if (Cells[x + dx, y + dy].CharaId != Cells[x, y].CharaId)
+            if(Cells[x+dx,y+dy].Character != Cells[x,y].Character)
             {
                 return false;
             }
@@ -112,13 +112,13 @@ public class GameModel //全modelを持つクラス
     }
     public void ChangeTurn()
     {
-        if (CurrentTurnCharaId == 0)
+        if (CurrentCharacter is Player)
         {
-            CurrentTurnCharaId = 1;
+            CurrentCharacter = Enemy;
         }
         else
         {
-            CurrentTurnCharaId = 0;
+            CurrentCharacter = Player;
         }
     }
 }

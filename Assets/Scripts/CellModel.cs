@@ -13,7 +13,7 @@ public class CellModel
         set
         {
             _isOpened = value;
-            if (CharaId == 0)
+            if (Character is Player)
             {
                 SetColor(Color.red);
             }
@@ -26,14 +26,14 @@ public class CellModel
 
     private bool _isOpened;
 
-    public int CharaId;
+    public ICharactor Character;
 
     public CellModel(int x, int y)
     {
         IsOpened = false;
         X = x;
         Y = y;
-        CharaId = -1;
+        Character = new Dummy(); //誰の物でもないセルは現状ダミーにしてるけど何にしたら良いのか
         SetColor(Color.white);
     }
 

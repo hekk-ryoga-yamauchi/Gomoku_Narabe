@@ -1,6 +1,5 @@
-public class Enemy : IPlayer
+public class Enemy : ICharactor
     {
-        public int Id = 1;
         public void StartTurn()
         {
             

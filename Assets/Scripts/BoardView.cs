@@ -6,7 +6,7 @@ public class BoardView : MonoBehaviour
     public Text GameOverText;
     public void WriteGameOver()
     {
-        if (GameModel.Instance.CurrentTurnCharaId == 0)
+        if (GameModel.Instance.CurrentCharacter is Player)
         {
             GameOverText.text = "GameOver!! You Win!!";
         }

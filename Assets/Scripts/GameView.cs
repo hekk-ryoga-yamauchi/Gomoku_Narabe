@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class GameView  : MonoBehaviour
 {
-    public CellsView CellsView;
-    public BoardView BoardView;
+    [SerializeField]private CellsView CellsView;
+    [SerializeField]private BoardView BoardView;
     private void Awake()
     {
         GameController.Instance.GameView = this;

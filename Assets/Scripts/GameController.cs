@@ -16,6 +16,7 @@ public class GameController //全modelを管理するクラスを作ってもい
 
     public void ResetCells()
     {
+        GameModel.Instance.CurrentCharacter = GameModel.Player;
         GameModel.Instance.ResetCells();
         GameView.ClearCells();
         GameView.WriteToBoardEmpty();
