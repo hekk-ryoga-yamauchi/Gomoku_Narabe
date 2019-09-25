@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class BoardView : MonoBehaviour
 {
-    public Text GameOverText;
+    [SerializeField] private Text GameOverText;
     public void WriteGameOver()
     {
-        if (GameModel.Instance.CurrentCharacter is Player)
+        if (GameModel.Instance.GetCurrentCharacter() is Player)
         {
             GameOverText.text = "GameOver!! You Win!!";
         }

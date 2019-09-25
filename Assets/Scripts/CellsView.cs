@@ -7,7 +7,7 @@ public class CellsView : MonoBehaviour
     {
         var cells = GetComponentsInChildren<CellView>();
         List<CellModel> cellsList = new List<CellModel>();
-        foreach (var cell in GameModel.Instance.Cells)
+        foreach (var cell in GameModel.Instance.GetCells())
         {
             cellsList.Add(cell);
         }

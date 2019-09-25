@@ -5,11 +5,11 @@ public class CellView : MonoBehaviour
 {
     public CellModel Cell
     {
-        get { return _cell;}
+        get => _cell;
         set
         {
             _cell = value;
-            _image.color = value.Color;
+            _image.color = value.GetColor();
         }
     }
 
@@ -27,6 +27,6 @@ public class CellView : MonoBehaviour
         if (Cell.IsOpened) return; //すでにそのセル画空いてたらスキップする
         if (GameModel.Instance.IsGameOver) return;
         GameController.Instance.Open(Cell.X,Cell.Y); //ViweからControllerに投げる
-        _image.color = Cell.Color;
+        _image.color = Cell.GetColor();
     }
 }

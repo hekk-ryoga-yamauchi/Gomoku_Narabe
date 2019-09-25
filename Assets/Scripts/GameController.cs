@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class GameController //全modelを管理するクラスを作ってもいいかも
+﻿public class GameController //全modelを管理するクラスを作ってもいいかも
 {
     public static GameController Instance { get;} = new GameController(); //シングルトンとしてはreadonlyかgetだけのプロパティにしておく必要がある、コンストラクタをprivateにするか
     public GameView GameView;
@@ -16,7 +14,7 @@ public class GameController //全modelを管理するクラスを作ってもい
 
     public void ResetCells()
     {
-        GameModel.Instance.CurrentCharacter = GameModel.Player;
+        GameModel.Instance.SetCurrentCharacter(GameModel.Instance.Player);
         GameModel.Instance.ResetCells();
         GameView.ClearCells();
         GameView.WriteToBoardEmpty();

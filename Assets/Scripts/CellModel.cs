@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
-
 public class CellModel
 {
-    public readonly int X;
+    public readonly int X; //範囲外の時、プロパティなら弾ける
     public readonly int Y;
-    public Color Color;
+    private Color _color;
 
     public bool IsOpened
     {
@@ -13,14 +11,19 @@ public class CellModel
         set
         {
             _isOpened = value;
-            if (Character is Player)
-            {
-                SetColor(Color.red);
-            }
-            else
-            {
-                SetColor(Color.blue);
-            }
+            ChangeColor();
+        }
+    }
+
+    private void ChangeColor()
+    {
+        if (Character is Player)
+        {
+            SetColor(Color.red);
+        }
+        else
+        {
+            SetColor(Color.blue);
         }
     }
 
@@ -33,12 +36,17 @@ public class CellModel
         IsOpened = false;
         X = x;
         Y = y;
-        Character = new Dummy(); //誰の物でもないセルは現状ダミーにしてるけど何にしたら良いのか
+        Character = new Dummy();
         SetColor(Color.white);
     }
 
     private void SetColor(Color color)
     {
-        Color = color;
+        _color = color;
+    }
+
+    public Color GetColor()
+    {
+        return _color;
     }
 }
