@@ -9140,8 +9140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7876e36874c749b2b1f49058d1d49c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CellsView: {fileID: 1725394820}
-  BoardView: {fileID: 182724583}
+  _cellsView: {fileID: 1725394820}
+  _boardView: {fileID: 182724583}
+  _resetButtonView: {fileID: 1993514653}
 --- !u!4 &966558601
 Transform:
   m_ObjectHideFlags: 0
