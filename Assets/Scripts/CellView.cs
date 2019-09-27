@@ -24,9 +24,12 @@ public class CellView : MonoBehaviour
 
     public void OnClick()
     {
-        if (Cell.IsOpened) return; //すでにそのセル画空いてたらスキップする
+        if (Cell.IsOpened) return; //コントローラーでやった方がいい
         if (GameModel.Instance.IsGameOver) return;
         GameController.Instance.Open(Cell.X,Cell.Y); //ViweからControllerに投げる
         _image.color = Cell.GetColor();
     }
+    
+    //Rendererメソッドを切った方がいいんじゃないか
+    
 }

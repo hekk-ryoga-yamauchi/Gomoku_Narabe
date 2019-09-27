@@ -11,8 +11,8 @@ public class GameView  : MonoBehaviour
 
     private void Start()
     {
-        if (CellsView == null) GetComponentInChildren<CellsView>();
-        if (BoardView == null) GetComponentInChildren<BoardView>();
+        if (CellsView == null) CellsView = GetComponentInChildren<CellsView>();
+        if (BoardView == null) BoardView = GetComponentInChildren<BoardView>();
         GameController.Instance.ResetCells();
     }
 
