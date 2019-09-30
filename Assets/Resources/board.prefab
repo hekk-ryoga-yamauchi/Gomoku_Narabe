@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 6288233964750930159}
   - component: {fileID: 5261236655971908842}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa42b26a395044e591b227fa71c26f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverText: {fileID: 5261236655971908842}
 --- !u!1 &5394534019448472851
 GameObject:
   m_ObjectHideFlags: 0
