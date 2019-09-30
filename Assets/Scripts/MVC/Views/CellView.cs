@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace MVC.Views
 {
-    public class CellView : MonoBehaviour,IView
+    public class CellView : MonoBehaviour
     {
         public Action ClickAction;
         [SerializeField] private Image _image;
@@ -22,9 +22,6 @@ namespace MVC.Views
         public void SetColor(Color color)
         {
             _image.color = color;
-        }
-        public void Renderer()
-        {
         }
     }
 }

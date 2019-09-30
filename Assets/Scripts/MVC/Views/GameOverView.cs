@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace MVC.Views
 {
-    public class GameOverView : MonoBehaviour, IView
+    public class GameOverView : MonoBehaviour
     {
         [SerializeField] private Text GameOverText;
         private string _text = "";
@@ -12,12 +12,14 @@ namespace MVC.Views
         {
             GameOverText = GetComponent<Text>();
         }
+
         public void Write(string text)
         {
             _text = text;
-            Renderer();
+            Render();
         }
-        public void Renderer()
+
+        public void Render()
         {
             GameOverText.text = _text;
         }

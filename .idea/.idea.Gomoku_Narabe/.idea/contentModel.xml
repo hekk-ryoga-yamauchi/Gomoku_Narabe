@@ -13,15 +13,17 @@
             </e>
             <e p="Models" t="Include">
               <e p="CellModel.cs" t="Include" />
-              <e p="Dummy.cs" t="Include" />
-              <e p="Enemy.cs" t="Include" />
+              <e p="DummyModel.cs" t="Include" />
+              <e p="EnemyModel.cs" t="Include" />
               <e p="GameModel.cs" t="Include" />
-              <e p="ICharactor.cs" t="Include" />
-              <e p="Player.cs" t="Include" />
+              <e p="ICharacterModel.cs" t="Include" />
+              <e p="PlayerModel.cs" t="Include" />
             </e>
             <e p="Views" t="Include">
+              <e p="CellsUnavailableView.cs" t="Include" />
               <e p="CellsView.cs" t="Include" />
               <e p="CellView.cs" t="Include" />
+              <e p="ChangeTurnTextView.cs" t="Include" />
               <e p="GameOverView.cs" t="Include" />
               <e p="GameView.cs" t="Include" />
               <e p="Iview.cs" t="Include" />

@@ -6,22 +6,21 @@ namespace MVC.Models
     {
         private static readonly int CellSize = 17; //constはdllに値が直接入る、static readonlyの方が更新される可能性がある場合良い。
         private static readonly int LineUpCount = 5;
-        private ICharactor _currentCharacter;
-        private CellModel[,] _cells = new CellModel[CellSize, CellSize];
-        public static GameModel Instance { get; } = new GameModel(); //シングルトン
-        public Player Player = new Player();
-        public Enemy Enemy = new Enemy();
+        private ICharacterModel _currentCharacterModel;
+        private CellModel[,] _cells;
+        private PlayerModel Player = new PlayerModel();
+        private EnemyModel Enemy = new EnemyModel();
 
-        public bool IsGameOver
+        public GameModel()
         {
-            get { return _isGameOver; }
+            _cells = new CellModel[CellSize, CellSize];
         }
 
-        private bool _isGameOver { get; set; }
+        public bool IsGameOver;
 
         public void ResetCells()
         {
-            _isGameOver = false;
+            IsGameOver = false;
             int cnt = 0;
             for (var i = 0; i < CellSize; i++)
             {
@@ -34,26 +33,38 @@ namespace MVC.Models
             }
         }
 
-        public bool Open(int x, int y)
+        public bool CanOpen(int x, int y)
         {
             if (OutOfRange(x, y))
             {
                 Debug.LogError("範囲外のcellが入力されました");
                 return false;
             }
-            if (_cells[x, y].IsOpened)
+
+            if (_cells[x, y].IsOpened())
             {
                 Debug.Log("すでに開いているセルです");
                 return false;
             }
-            if (_isGameOver)
+
+            if (IsGameOver)
             {
                 Debug.Log("GameOverです");
                 return false;
             }
-            _cells[x, y].Character = _currentCharacter;
-            _cells[x, y].IsOpened = true;
-            if (CheckGameOver(x,y))
+
+            return true;
+        }
+
+        public void Open(int x, int y)
+        {
+            if (!CanOpen(x, y))
+            {
+                return;
+            }
+
+            _cells[x, y].SetCharacterModel(_currentCharacterModel);
+            if (CheckGameOver(x, y))
             {
                 SetGameOver(true);
             }
@@ -61,7 +72,6 @@ namespace MVC.Models
             {
                 ChangeTurn();
             }
-            return true;
         }
 
         public bool CheckGameOver(int x, int y)
@@ -74,12 +84,14 @@ namespace MVC.Models
                     {
                         break;
                     }
+
                     if (CheckLine(x, y, i, j, 0))
                     {
                         return true;
                     }
                 }
             }
+
             return false;
         }
 
@@ -96,18 +108,20 @@ namespace MVC.Models
                 return false;
             }
 
-            if (_cells[x + dx, y + dy].IsOpened)
+            if (_cells[x + dx, y + dy].IsOpened())
             {
-                if (_cells[x + dx, y + dy].Character != _cells[x, y].Character)
+                if (_cells[x + dx, y + dy].GetCharacterModel() != _cells[x, y].GetCharacterModel())
                 {
                     return false;
                 }
+
                 cnt++;
                 if (CheckLine(x + dx, y + dy, dx, dy, cnt))
                 {
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -117,28 +131,35 @@ namespace MVC.Models
             {
                 return true;
             }
+
             return false;
         }
 
         private void SetGameOver(bool isGameOver)
         {
-            _isGameOver = isGameOver;
+            IsGameOver = isGameOver;
         }
 
         public void ChangeTurn()
         {
-            if (_currentCharacter is Player)
+            if (_currentCharacterModel is PlayerModel)
             {
-                _currentCharacter = Enemy;
+                _currentCharacterModel = Enemy;
             }
             else
             {
-                _currentCharacter = Player;
+                _currentCharacterModel = Player;
             }
         }
-        public void SetCurrentCharacter(ICharactor character)
+
+        public void SetCurrentCharacter(ICharacterModel characterModel)
         {
-            _currentCharacter = character;
+            _currentCharacterModel = characterModel;
+        }
+
+        public ICharacterModel GetCurrentCharacterModel()
+        {
+            return _currentCharacterModel;
         }
 
         public CellModel[,] GetCells()
@@ -149,6 +170,11 @@ namespace MVC.Models
         public int GetCellSize()
         {
             return CellSize;
+        }
+
+        public ICharacterModel GetPlayer()
+        {
+            return Player;
         }
     }
 }

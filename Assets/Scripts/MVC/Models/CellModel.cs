@@ -1,55 +1,42 @@
 using UnityEngine;
+
 namespace MVC.Models
 {
     public class CellModel
     {
         public readonly int X; //範囲外の時、プロパティなら弾ける
+
         public readonly int Y;
-        private Color _color;
 
-        public bool IsOpened
+//        private Color _color;
+        private ICharacterModel CharacterModel;
+
+        public void SetCharacterModel(ICharacterModel characterModel)
         {
-            get => _isOpened;
-            set
-            {
-                _isOpened = value;
-                ChangeColor();
-            }
+            CharacterModel = characterModel;
         }
 
-        private void ChangeColor()
+        public ICharacterModel GetCharacterModel()
         {
-            if (Character is Player)
-            {
-                SetColor(Color.red);
-            }
-            else
-            {
-                SetColor(Color.blue);
-            }
+            return CharacterModel;
         }
 
-        private bool _isOpened;
-
-        public ICharactor Character;
 
         public CellModel(int x, int y)
         {
-            IsOpened = false;
             X = x;
             Y = y;
-            Character = new Dummy();
-            SetColor(Color.white);
+            CharacterModel = new DummyModel();
         }
 
-        private void SetColor(Color color)
+        public bool IsOpened()
         {
-            _color = color;
-        }
+            if (CharacterModel is PlayerModel || CharacterModel is EnemyModel)
+            {
+                return true;
+            }
 
-        public Color GetColor()
-        {
-            return _color;
+            return false;
         }
     }
 }
