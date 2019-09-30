@@ -15,6 +15,7 @@ namespace MVC.Controllers
             _gameModel = new GameModel();
         }
 
+        
     public void Open(int x, int y)
     {
         var Cells = GameModel.Instance.GetCells();
